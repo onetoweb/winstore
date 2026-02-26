@@ -19,11 +19,11 @@ Setup
     use Onetoweb\Winstore\Client;
     
     // param
-    $apiKey = 'api_key';
-    $testModus = true;
+    $username = 'username';
+    $password  = 'password';
     
     // setup client
-    $client = new Client($apiKey, $testModus);
+    $client = new Client($username, $password);
 
 
 ========
