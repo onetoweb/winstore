@@ -98,7 +98,7 @@ class Client
                 
                 $value = (string) $value;
                 
-                if (is_numeric($value)) {
+                if (is_numeric($value) and str_starts_with($value, '0') === false) {
                     
                     if (str_contains($value, '.')) {
                         $result[$key] = (float) $value;
