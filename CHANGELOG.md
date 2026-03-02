@@ -15,3 +15,4 @@
 ## [1.0.3] - 2026-03-02
 
  - cast zero padded integers as string
+ - add php 8 polyfill
