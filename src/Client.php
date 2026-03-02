@@ -99,7 +99,13 @@ class Client
                 $value = (string) $value;
                 
                 if (is_numeric($value)) {
-                    $result[$key] = (int) $value;
+                    
+                    if (str_contains($value, '.')) {
+                        $result[$key] = (float) $value;
+                    } else {
+                        $result[$key] = (int) $value;
+                    }
+                    
                 } elseif ($value === 'true' || $value === 'false') {
                     $result[$key] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
                 } else {

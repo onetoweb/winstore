@@ -7,3 +7,7 @@
 ## [1.0.1] - 2026-03-02
 
  - filter boolean values
+
+## [1.0.2] - 2026-03-02
+
+ - cast values as float
