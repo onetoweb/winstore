@@ -100,6 +100,8 @@ class Client
                 
                 if (is_numeric($value)) {
                     $result[$key] = (int) $value;
+                } elseif ($value === 'true' || $value === 'false') {
+                    $result[$key] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
                 } else {
                     $result[$key] = $value;
                 }
