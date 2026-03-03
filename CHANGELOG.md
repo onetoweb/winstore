@@ -16,3 +16,7 @@
 
  - cast zero padded integers as string
  - add php 8 polyfill
+
+## [1.0.4] - 2026-03-03
+
+ - cast zero as integers
