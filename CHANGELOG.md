@@ -20,3 +20,7 @@
 ## [1.0.4] - 2026-03-03
 
  - cast zero as integers
+
+## [1.0.5] - 2026-03-03
+
+ - return empty values as null

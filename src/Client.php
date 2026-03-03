@@ -115,7 +115,12 @@ class Client
                 } elseif ($value === 'true' || $value === 'false') {
                     $result[$key] = filter_var($value, FILTER_VALIDATE_BOOLEAN);
                 } else {
-                    $result[$key] = $value;
+                    
+                    if (!empty($value)) {
+                        $result[$key] = $value;
+                    } else {
+                        $result[$key] = null;
+                    }
                 }
             }
         }
