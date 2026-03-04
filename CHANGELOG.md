@@ -28,3 +28,7 @@
 ## [1.0.6] - 2026-03-04
 
  - add support for json
+
+## [1.0.7] - 2026-03-04
+
+ - update base href

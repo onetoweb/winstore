@@ -16,7 +16,7 @@ class Client
     /**
      * Base href
      */
-    public const BASE_HREF = 'https://winstore-c.aca.nl/iposws/api/osd/';
+    public const BASE_HREF = 'https://winstore-c.aca.nl/iposws/api/osd';
     
     /**
      * Methods.
