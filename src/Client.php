@@ -141,7 +141,9 @@ class Client
         // build options
         $options = [
             RequestOptions::HTTP_ERRORS => true,
-            RequestOptions::HEADERS => [],
+            RequestOptions::HEADERS => [
+                'Accept' => 'application/json',
+            ],
             RequestOptions::AUTH => [
                 $this->username,
                 $this->password
@@ -156,13 +158,21 @@ class Client
         $contents = $response->getBody()->getContents();
         
         $result = [];
+        
         if (!empty($contents)) {
             
-            // get xml elements
-            $xmlElements = new SimpleXMLElement($contents, LIBXML_NOERROR);
-            
-            foreach ($xmlElements as $xmlElement) {
-                $result[] = $this->readAttr($xmlElement);
+            if (str_starts_with($response->getHeaderLine('Content-Type'), 'application/xml')) {
+                
+                // get xml elements
+                $xmlElements = new SimpleXMLElement($contents, LIBXML_NOERROR);
+                
+                foreach ($xmlElements as $xmlElement) {
+                    $result[] = $this->readAttr($xmlElement);
+                }
+                
+            } elseif (str_starts_with($response->getHeaderLine('Content-Type'), 'application/json')) {
+                
+                $result = json_decode($contents, true);
             }
         }
         

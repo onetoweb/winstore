@@ -24,3 +24,7 @@
 ## [1.0.5] - 2026-03-03
 
  - return empty values as null
+
+## [1.0.6] - 2026-03-04
+
+ - add support for json
