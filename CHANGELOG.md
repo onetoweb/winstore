@@ -36,3 +36,7 @@
 ## [1.0.8] - 2026-03-05
 
  - build custom query string replace & with ?
+
+## [1.0.9] - 2026-03-05
+
+ - only add query string if the request has query parameters
