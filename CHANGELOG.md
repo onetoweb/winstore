@@ -32,3 +32,7 @@
 ## [1.0.7] - 2026-03-04
 
  - update base href
+
+## [1.0.8] - 2026-03-05
+
+ - build custom query string replace & with ?

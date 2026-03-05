@@ -148,11 +148,13 @@ class Client
                 $this->username,
                 $this->password
             ],
-            RequestOptions::QUERY => $query,
         ];
         
+        // build query string
+        $queryString = '?'.str_replace('&', '?', http_build_query($query));
+        
         // make request
-        $response = (new GuzzleCLient())->request($method, $this->getUrl($endpoint), $options);
+        $response = (new GuzzleCLient())->request($method, $this->getUrl($endpoint).$queryString, $options);
         
         // get contents
         $contents = $response->getBody()->getContents();
