@@ -150,11 +150,20 @@ class Client
             ],
         ];
         
-        // build query string
-        $queryString = '?'.str_replace('&', '?', http_build_query($query));
+        // get url
+        $url = $this->getUrl($endpoint);
+        
+        if (count($query) > 0) {
+            
+            // build query string
+            $queryString = '?'.str_replace('&', '?', http_build_query($query));
+            
+            // add query string to url
+            $url .= $queryString;
+        }
         
         // make request
-        $response = (new GuzzleCLient())->request($method, $this->getUrl($endpoint).$queryString, $options);
+        $response = (new GuzzleCLient())->request($method, $url, $options);
         
         // get contents
         $contents = $response->getBody()->getContents();
