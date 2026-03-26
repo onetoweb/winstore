@@ -40,3 +40,7 @@
 ## [1.0.9] - 2026-03-05
 
  - only add query string if the request has query parameters
+
+## [1.2.0] - 2026-03-26
+
+ - add order endpoint, order model

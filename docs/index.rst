@@ -33,3 +33,4 @@ Examples
 * `Supplier <supplier.rst>`_
 * `Article <article.rst>`_
 * `Stock <stock.rst>`_
+* `Order <order.rst>`_

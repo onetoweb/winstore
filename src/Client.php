@@ -3,6 +3,7 @@
 namespace Onetoweb\Winstore;
 
 use Onetoweb\Winstore\Endpoint\Endpoints;
+use Onetoweb\Winstore\Model\ModelInterface;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Client as GuzzleCLient;
 use SimpleXMLElement;
@@ -22,6 +23,7 @@ class Client
      * Methods.
      */
     public const METHOD_GET = 'GET';
+    public const METHOD_POST = 'POST';
     
     /**
      * @var string
@@ -78,6 +80,17 @@ class Client
     }
     
     /**
+     * @param string $endpoint
+     * @param ?ModelInterface $data = null
+     * 
+     * @return string|null
+     */
+    public function post(string $endpoint, ?ModelInterface $data = null, array $query = []): array
+    {
+        return $this->request(self::METHOD_POST, $endpoint, $data, $query);
+    }
+    
+    /**
      * @param SimpleXMLElement $xmlElement
      * 
      * @return array
@@ -131,24 +144,36 @@ class Client
     /**
      * @param string $method
      * @param string $endpoint
-     * @param array $data = []
+     * @param ?ModelInterface $data = null
      * @param array $query = []
      * 
      * @return array
      */
-    public function request(string $method, string $endpoint, array $data = [], array $query = []): array
+    public function request(string $method, string $endpoint, ?ModelInterface $data = null, array $query = []): array
     {
         // build options
         $options = [
             RequestOptions::HTTP_ERRORS => true,
             RequestOptions::HEADERS => [
-                'Accept' => 'application/json',
+                'Accept' => 'application/json'
             ],
             RequestOptions::AUTH => [
                 $this->username,
                 $this->password
             ],
+            
         ];
+        
+        if (
+            $method === self::METHOD_POST
+            and $data !== null
+        ) {
+            
+            $data->build();
+            
+            $options[RequestOptions::HEADERS]['Content-Type'] = 'application/xml';
+            $options[RequestOptions::BODY] = (string) $data;
+        }
         
         // get url
         $url = $this->getUrl($endpoint);
