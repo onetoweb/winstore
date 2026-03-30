@@ -41,11 +41,11 @@
 
  - only add query string if the request has query parameters
 
-## [1.2.0] - 2026-03-26
+## [1.1.0] - 2026-03-26
 
  - add order endpoint, order model
 
-## [1.2.1] - 2026-03-30
+## [1.2.0] - 2026-03-30
 
  - add changeSavingPoints to order model
  - add reduction to order model
