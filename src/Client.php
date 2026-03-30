@@ -76,7 +76,7 @@ class Client
      */
     public function get(string $endpoint, array $query = []): array
     {
-        return $this->request(self::METHOD_GET, $endpoint, [], $query);
+        return $this->request(self::METHOD_GET, $endpoint, null, $query);
     }
     
     /**

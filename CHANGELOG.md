@@ -50,3 +50,7 @@
  - add changeSavingPoints to order model
  - add reduction to order model
  - add count products to order model
+
+## [1.2.1] - 2026-03-30
+
+ - Bugfix get method
