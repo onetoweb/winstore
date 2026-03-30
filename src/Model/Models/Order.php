@@ -9,6 +9,8 @@ use Onetoweb\Winstore\Model\AbstractModel;
  */
 class Order extends AbstractModel
 {
+    public const ROOT_NODE_NAME = 'order';
+    
     /**
      * @var string
      */
@@ -90,13 +92,20 @@ class Order extends AbstractModel
     private $currency = 'EUR';
     
     /**
+     * @var string
+     */
+    private $changeSavingPoints;
+    
+    /**
      * @var array
      */
     private $products = [];
     
     public function build()
     {
-        $order = $this->createElement('order');
+        $this->checkAndRemoveRootNode(self::ROOT_NODE_NAME);
+        
+        $order = $this->createElement(self::ROOT_NODE_NAME);
         
         $order->appendChild($this->createElement('ordernr', $this->ordernr));
         $order->appendChild($this->createElement('orderdate', $this->orderdate->format('Y-m-d H:i:s')));
@@ -108,6 +117,10 @@ class Order extends AbstractModel
         $order->appendChild($this->createElement('channel', $this->channel));
         $order->appendChild($this->createElement('total', $this->total));
         $order->appendChild($this->createElement('currency', $this->currency));
+        
+        if ($this->changeSavingPoints !== null) {
+            $order->appendChild($this->createElement('changeSavingPoints', $this->changeSavingPoints));
+        }
         
         $invoiceAdd = $this->createElement('invoice_add');
         
@@ -133,6 +146,10 @@ class Order extends AbstractModel
             $position->appendChild($this->createElement('type', $product['type']));
             $position->appendChild($this->createElement('branch', $product['branch']));
             
+            if ($product['reduction']) {
+                $position->appendChild($this->createElement('reduction', $product['reduction']));
+            }
+            
             $positions->appendChild($position);
         }
         
@@ -141,15 +158,21 @@ class Order extends AbstractModel
         $this->appendChild($order);
     }
     
-    public function addProduct(string $product_id, int $amount, float $single_price, int $branch = null, string $type = 'S')
+    public function addProduct(string $product_id, int $amount, float $single_price, int $branch = null, string $type = 'S', ?string $reduction = null)
     {
         $this->products[] = [
             'product_id' => $product_id,
             'amount' => $amount,
             'single_price' => $single_price,
             'branch' => $branch,
-            'type' => $type
+            'type' => $type,
+            'reduction' => $reduction,
         ];
+    }
+    
+    public function countProducts(): int
+    {
+        return count($this->products);
     }
     
     public function setOrdernr(string $ordernr): self
@@ -263,5 +286,13 @@ class Order extends AbstractModel
         
         return $this;
     }
+    
+    public function setChangeSavingPoints(string $changeSavingPoints): self
+    {
+        $this->changeSavingPoints = $changeSavingPoints;
+        
+        return $this;
+    }
+    
 }
 

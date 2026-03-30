@@ -21,6 +21,22 @@ abstract class AbstractModel extends DOMDocument implements ModelInterface
     }
     
     /**
+     * @param string $nodeName
+     */
+    public function checkAndRemoveRootNode(string $nodeName)
+    {
+        if ($this->childNodes->count() > 0) {
+            
+            $rootNode = $this->childNodes->item(0);
+            
+            if ($rootNode->nodeName === $nodeName) {
+                
+                $this->removeChild($rootNode);
+            }
+        }
+    }
+    
+    /**
      * @return string
      */
     public function __toString(): string

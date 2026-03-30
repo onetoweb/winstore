@@ -34,6 +34,7 @@ Post order with status code
         ->setBranch(1)
         ->setChannel('Eindhoven')
         ->setTotal(9.99)
+        ->setChangeSavingPoints('+10')
     ;
     
     // add product to order
@@ -41,9 +42,10 @@ Post order with status code
     $amount = 1;
     $singlePrice = 9.99;
     $branch = 1;
-    $order->addProduct($productId, $amount, $singlePrice, $branch);
+    $type = 'S';
+    $reduction = '8';
     
-    $result = $client->order->postOrderWithStatusCode($order);
+    $order->addProduct($productId, $amount, $singlePrice, $branch, $type, $reduction);
 
 
 `Back to top <#top>`_
