@@ -136,9 +136,9 @@ class Order extends AbstractModel
         
         $positions = $this->createElement('positions');
         
-        $position = $this->createElement('position');
-        
         foreach ($this->products as $product) {
+            
+            $position = $this->createElement('position');
             
             $position->appendChild($this->createElement('product_id', $product['product_id']));
             $position->appendChild($this->createElement('amount', $product['amount']));

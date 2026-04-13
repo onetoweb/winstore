@@ -54,3 +54,7 @@
 ## [1.2.1] - 2026-03-30
 
  - Bugfix get method
+
+## [1.2.2] - 2026-04-13
+
+ - Bugfix: allow for more than one product in order model
