@@ -58,3 +58,7 @@
 ## [1.2.2] - 2026-04-13
 
  - Bugfix: allow for more than one product in order model
+
+## [1.2.3] - 2026-04-22
+
+ - Bugfix: set correct country and country ISO in order model

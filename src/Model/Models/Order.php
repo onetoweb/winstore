@@ -129,8 +129,8 @@ class Order extends AbstractModel
         $invoiceAdd->appendChild($this->createElement('street', $this->street));
         $invoiceAdd->appendChild($this->createElement('streetnr', $this->streetnr));
         $invoiceAdd->appendChild($this->createElement('zip', $this->zip));
-        $invoiceAdd->appendChild($this->createElement('country', $this->zip));
-        $invoiceAdd->appendChild($this->createElement('countryISO', $this->zip));
+        $invoiceAdd->appendChild($this->createElement('country', $this->country));
+        $invoiceAdd->appendChild($this->createElement('countryISO', $this->countryISO));
         
         $order->appendChild($invoiceAdd);
         
